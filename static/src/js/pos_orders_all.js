@@ -2177,7 +2177,7 @@ odoo.define('bi_pos_reorder.pos', function(require) {
 
 		},
 	});
-	
+	/*
 	//bi_pos_stock
 	screens.ProductScreenWidget.include({
 		show: function() {
@@ -2345,7 +2345,7 @@ odoo.define('bi_pos_reorder.pos', function(require) {
 	});
 	
 	//bi_pos_stock
-
+*/
 
 	// Popup start
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	    
+        
+        <!-- Add Custom Fields in pos.config -->
+       <record model="ir.ui.view" id="custom_bi_pos_discount_form_view">
+            <field name="name">pos.config.form.extended.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+            <field name="arch" type="xml">
+				<field name="journal_ids" position="after">
+				    <group>
+						<group string="Discount Configuration in POS">
+							<field name="discount_type"/>
+						</group>
+					</group>
+				</field>
+			</field>
+       </record>
+       
+       <record model="ir.ui.view" id="pos_sale_order_inherit">
+        <field name="name">pos.order.view.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+				<field string="Discount Type" name="discount_type" readonly="True"/>
+
+			</field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="pos_order_line_inherit">
+        <field name="name">pos.order.line.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page/field[@name='lines']//tree/field[@name='discount']" position="attributes">
+            	<attribute name="string">Discount</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/field[@name='lines']//form/group/field[@name='discount']" position="attributes">
+            	<attribute name="string">Discount</attribute>
+            </xpath>
+        </field>
+    </record>
+	
+        
+    </data>
+</openerp>

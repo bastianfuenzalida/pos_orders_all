@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Add custom js for pos_orders_all -->
+		<template id="assets_for_pos_orders_all" inherit_id="point_of_sale.assets">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/pos_orders_all/static/src/css/custom.css" />
+				<script type="text/javascript" src="/pos_orders_all/static/src/js/pos_orders_all.js"/>
+			</xpath>
+		</template>
+
+		<record model="ir.ui.view" id="custom_bi_pos_import_sale_view">
+		<field name="name">pos.config.form.extended.view</field>
+		<field name="model">pos.config</field>
+		<field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+		<field name="arch" type="xml">
+			<field name="journal_ids" position="after">
+					<group>
+						<group string="Session Configuration in POS">
+							<field name="pos_session_limit"/>
+						</group>
+					</group>
+					<group>
+						<group string="Import Configuration in POS">
+							<field name="check"/>
+						</group>
+					</group>
+					<group>
+						<group string="Stock Configuration in POS">
+								<field name="pos_display_stock"/>
+								<field name="pos_stock_type"/>
+								<field name="pos_allow_order"/>
+								<field name="pos_deny_order"/>
+						</group>
+						
+						<group string="Stock Location Configuration">
+								<field name="show_stock_location" widget="radio"/>
+						</group>
+					</group>
+					<group>
+						<group string="Bag Charges Configuration">
+							<field name="allow_bag_charges" />
+							<field name="pos_bag_category_id" attrs="{'invisible': [('allow_bag_charges', '=', False)]}"/>  
+						</group>
+					</group>
+				</field>	
+		</field>
+		</record>
+
+	</data>
+</openerp>
